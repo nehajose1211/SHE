@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Cosmetic Ingredient Analyzer</title>
+
+<style>
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:
+linear-gradient(rgba(255,255,255,0.85),rgba(255,255,255,0.85)),
+url("https://images.unsplash.com/photo-1596462502278-27bfdc403348");
+background-size:cover;
+background-position:center;
+margin:0;
+padding:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.container{
+background:white;
+width:420px;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+h2{
+color:#ff4d6d;
+margin-bottom:10px;
+}
+
+.upload-box{
+border:2px dashed #ff9ab3;
+padding:20px;
+border-radius:10px;
+margin-top:15px;
+background:#fff5f7;
+}
+
+input[type=file]{
+margin-top:10px;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+background:#ff4d6d;
+border:none;
+border-radius:8px;
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#e63956;
+}
+
+.preview{
+margin-top:20px;
+}
+
+.preview img{
+width:120px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+.result-box{
+margin-top:20px;
+background:#fff0f3;
+padding:15px;
+border-radius:10px;
+text-align:left;
+}
+
+.warning{
+color:#c1121f;
+font-weight:bold;
+}
+
+.safe{
+color:#2a9d8f;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>💄 Cosmetic Ingredient Analyzer</h2>
+
+<p>Upload a photo of product ingredients</p>
+
+<div class="upload-box">
+<input type="file" id="imageInput" onchange="previewImage()">
+</div>
+
+<div class="preview">
+<img id="previewImg" style="display:none;">
+</div>
+
+<button onclick="analyze()">Analyze Ingredients</button>
+
+<div class="result-box">
+<h3>🧾 Detected Ingredients</h3>
+<p id="ingredients"></p>
+</div>
+
+<div class="result-box">
+<h3>⚠ Risk Analysis</h3>
+<p id="risk"></p>
+</div>
+
+<button onclick="runAIAnalysis()">Get AI Analysis</button>
+<div id="aiResult"></div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+
+<script>
+
+function previewImage(){
+
+let file=document.getElementById("imageInput").files[0];
+
+let reader=new FileReader();
+
+reader.onload=function(e){
+
+let img=document.getElementById("previewImg");
+
+img.src=e.target.result;
+img.style.display="block";
+
+}
+
+reader.readAsDataURL(file);
+
+}
+
+function analyze(){
+
+let file=document.getElementById("imageInput").files[0];
+
+if(!file){
+alert("Please upload an image first");
+return;
+}
+
+document.getElementById("ingredients").innerText="Scanning image...";
+document.getElementById("risk").innerText="Analyzing ingredients...";
+
+Tesseract.recognize(
+file,
+'eng'
+).then(function(result){
+
+let text=result.data.text;
+
+document.getElementById("ingredients").innerText=text;
+
+checkIngredients(text);
+
+});
+
+}
+
+function checkIngredients(text){
+
+let riskyIngredients=[
+"paraben",
+"alcohol",
+"sulfate",
+"fragrance",
+"triclosan"
+];
+
+let riskResult="";
+
+let lower=text.toLowerCase();
+
+riskyIngredients.forEach(function(item){
+
+if(lower.includes(item)){
+
+riskResult += "<span class='warning'>⚠ "+item+" may cause skin irritation or hormonal issues</span><br>";
+
+}
+
+});
+
+if(riskResult===""){
+
+riskResult="<span class='safe'>✅ No harmful ingredients detected</span>";
+
+}
+
+document.getElementById("risk").innerHTML=riskResult;
+
+}
+
+
+</script>
+
+</body>
+
+</html>

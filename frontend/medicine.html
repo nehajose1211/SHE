@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Medicine Safety Checker</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+font-family:Arial;
+
+/* Background image */
+
+background-image:url("https://images.unsplash.com/photo-1584362917165-526a968579e8");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* Glass effect container */
+
+.container{
+
+background:rgba(255,255,255,0.9);
+padding:35px;
+width:420px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+text-align:center;
+
+}
+
+/* Title */
+
+h2{
+color:#cc0066;
+margin-bottom:20px;
+}
+
+/* Inputs */
+
+input, textarea{
+
+width:90%;
+padding:12px;
+margin:10px;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:14px;
+
+}
+
+/* Buttons */
+
+button{
+
+padding:12px 22px;
+background:linear-gradient(135deg,#ff4da6,#ff0066);
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:15px;
+transition:0.3s;
+
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+/* Result */
+
+#result{
+margin-top:20px;
+font-weight:bold;
+font-size:16px;
+}
+
+.backBtn{
+margin-top:15px;
+background:#6a5acd;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>💊 Medicine Safety Analyzer</h2>
+
+<p>Upload Medicine Image</p>
+
+<input type="file">
+
+<p>Medicine Name / Ingredients</p>
+
+<textarea id="medicine" placeholder="Example: Paracetamol, Ibuprofen"></textarea>
+
+<p>Your Health Condition</p>
+
+<input type="text" id="condition" placeholder="Example: anemia / PCOS / diabetes">
+
+<button onclick="checkMedicine()">Analyze Medicine</button>
+
+<p id="result"></p>
+<button onclick="runAIAnalysis()">Get AI Analysis</button>
+<div id="aiResult"></div>
+<button class="backBtn" onclick="window.location.href='index.html'">
+⬅ Back
+</button>
+
+</div>
+
+<script>
+
+function checkMedicine(){
+
+let medicine=document.getElementById("medicine").value.toLowerCase();
+let condition=document.getElementById("condition").value.toLowerCase();
+
+let result="";
+
+if(condition.includes("anemia") && medicine.includes("ibuprofen")){
+result="⚠ Ibuprofen may cause stomach irritation for people with anemia.";
+}
+
+else if(condition.includes("pcos") && medicine.includes("hormone")){
+result="⚠ Hormonal medicines should be taken carefully with PCOS.";
+}
+
+else if(condition.includes("diabetes") && medicine.includes("steroid")){
+result="⚠ Steroid medicines can increase blood sugar levels.";
+}
+
+else{
+result="✅ No major risk detected based on provided data.";
+}
+
+document.getElementById("result").innerText=result;
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,249 @@
+/* BODY BACKGROUND */
+
+body{
+font-family: 'Segoe UI', Arial;
+background: linear-gradient(135deg,#ffe6f2,#f3d9ff);
+margin:0;
+text-align:center;
+min-height:100vh;
+
+/* soft background pattern */
+
+background-image:
+radial-gradient(circle at 20% 20%, rgba(255,255,255,0.4) 0%, transparent 40%),
+radial-gradient(circle at 80% 30%, rgba(255,255,255,0.3) 0%, transparent 40%),
+radial-gradient(circle at 40% 80%, rgba(255,255,255,0.3) 0%, transparent 40%);
+}
+
+
+/* MAIN CONTAINER */
+
+.container{
+padding:50px 20px;
+}
+
+h1{
+color:#cc0066;
+font-size:38px;
+margin-bottom:10px;
+}
+
+p{
+color:#555;
+}
+
+
+/* FEATURE CARDS */
+
+.features{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:25px;
+margin-top:40px;
+}
+
+.features a{
+text-decoration:none;
+color:inherit;
+}
+
+
+/* CARD DESIGN */
+
+.card{
+
+background:rgba(255,255,255,0.95);
+
+padding:25px;
+
+width:220px;
+
+border-radius:18px;
+
+box-shadow:0 8px 20px rgba(0,0,0,0.12);
+
+transition:0.35s;
+
+backdrop-filter:blur(10px);
+
+}
+
+.card:hover{
+
+transform:translateY(-8px) scale(1.05);
+
+box-shadow:0 12px 30px rgba(0,0,0,0.2);
+
+}
+
+
+/* ICONS */
+
+.card i{
+
+font-size:32px;
+
+color:#ff4da6;
+
+margin-bottom:12px;
+
+}
+
+
+/* BUTTONS */
+
+.startBtn{
+
+margin-top:30px;
+
+padding:14px 30px;
+
+background:linear-gradient(135deg,#ff4da6,#ff0066);
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+font-size:16px;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+.startBtn:hover{
+
+transform:scale(1.05);
+
+background:linear-gradient(135deg,#ff0066,#cc0052);
+
+}
+
+
+/* PROFILE FORM */
+
+.formContainer{
+
+background:white;
+
+width:360px;
+
+margin:60px auto;
+
+padding:35px;
+
+border-radius:18px;
+
+box-shadow:0 8px 25px rgba(0,0,0,0.15);
+
+}
+
+.formContainer h2{
+color:#cc0066;
+}
+
+
+/* INPUTS */
+
+input{
+
+width:100%;
+
+padding:10px;
+
+margin:10px 0;
+
+border-radius:8px;
+
+border:1px solid #ddd;
+
+font-size:14px;
+
+}
+
+
+/* GENERAL BUTTON */
+
+button{
+
+padding:11px 18px;
+
+background:linear-gradient(135deg,#ff4da6,#ff0066);
+
+color:white;
+
+border:none;
+
+border-radius:8px;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+button:hover{
+
+transform:scale(1.05);
+
+background:linear-gradient(135deg,#ff0066,#cc0052);
+
+}
+
+
+/* DASHBOARD BUTTON */
+
+.dashboardBtn{
+
+margin-top:10px;
+
+background:linear-gradient(135deg,#6a5acd,#836fff);
+
+}
+
+
+/* DASHBOARD CONTAINER */
+
+.dashboardContainer{
+
+padding:40px 20px;
+
+}
+
+
+/* DASHBOARD CARDS */
+
+.dashboardContainer .card{
+
+background:white;
+
+width:380px;
+
+margin:25px auto;
+
+padding:25px;
+
+border-radius:18px;
+
+box-shadow:0 6px 18px rgba(0,0,0,0.15);
+
+text-align:left;
+
+}
+
+
+/* RESULT TEXT */
+
+#result{
+
+margin-top:15px;
+
+font-weight:bold;
+
+color:#333;
+
+}

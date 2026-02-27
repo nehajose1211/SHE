@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>HerBalance - Personal Profile</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <div class="formContainer">
+
+    <h2><i class="fa-solid fa-user"></i> Personal Health Profile</h2>
+
+    <!-- Display saved profile -->
+    <div id="profileView">
+      <h3>🌸 Your Saved Profile</h3>
+      <p id="showProfile">No profile saved yet!</p>
+      <button id="editBtn" class="dashboardBtn">✏ Edit Profile</button>
+    </div>
+
+    <!-- Form for editing / saving profile -->
+    <form id="profileForm" style="display:none;">
+
+      <label>Name</label>
+      <input type="text" id="Name">
+      <label>Age</label>
+      <input type="number" id="age">
+
+      <label>Height (cm)</label>
+      <input type="number" id="height">
+
+      <label>Weight (kg)</label>
+      <input type="number" id="weight">
+
+      <label>Health Conditions</label>
+      <input type="text" id="conditions">
+
+      <label>Medicines</label>
+      <input type="text" id="medicines">
+
+      <label>Allergies</label>
+      <input type="text" id="Allergies">
+
+      <button type="submit">Save Profile</button>
+      <button type="button" id="cancelBtn" class="dashboardBtn">Cancel</button>
+    </form>
+
+    <!-- Back Button -->
+    <a href="index.html">
+      <button class="dashboardBtn">⬅ Back to Home</button>
+    </a>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

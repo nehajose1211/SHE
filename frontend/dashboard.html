@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Health Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboardContainer">
+        <h1>🌸 Health Dashboard</h1>
+
+        <!-- Period Tracker -->
+        <div class="card">
+            <h3><i class="fa-solid fa-calendar"></i> Period Tracker</h3>
+            <label>Last Period Date</label>
+            <input type="date" id="lastPeriod">
+            
+            <label>Cycle Length (days)</label>
+            <input type="number" id="cycleLength" placeholder="e.g. 28">
+            
+            <button onclick="predictPeriod()">Predict Next Period</button>
+            <p id="result" style="font-weight:bold; color:#d63384; margin-top:10px;"></p>
+        </div>
+
+        <div class="card">
+            <h3><i class="fa-solid fa-dumbbell"></i> Workout Suggestion</h3>
+            <div id="workout">Recommendations will appear here.</div>
+        </div>
+
+        <div class="card">
+            <h3><i class="fa-solid fa-apple-whole"></i> Food Suggestion</h3>
+            <div id="food">Recommendations will appear here.</div>
+        </div>
+
+        <a href="index.html"><button class="startBtn">Back</button></a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
