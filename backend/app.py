@@ -97,11 +97,12 @@ def full_analysis():
 # =======================
 # RUN SERVER
 # =======================
+port = os.getenv("PORT")
 if __name__ == "__main__":
     # Check if the path actually exists before starting
     if not os.path.exists(os.path.join(frontend_dir, "index.html")):
         print(f"ERROR: Could not find index.html in {frontend_dir}")
     else:
         print(f"Success! Serving frontend from: {frontend_dir}")
-        app.run(debug=True, port=5000)
+        app.run(debug=True, port=port)
 
