@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348" alt="HerBalance Banner" width="100%">
+  <img src="https://raw.githubusercontent.com/tinkerhub/tink-her-hack-temp/main/img.png" alt="HerBalance Banner" width="100%">
 </p>
 
 # 🌸 HerBalance 🎯
