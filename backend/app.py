@@ -104,5 +104,5 @@ if __name__ == "__main__":
         print(f"ERROR: Could not find index.html in {frontend_dir}")
     else:
         print(f"Success! Serving frontend from: {frontend_dir}")
-        app.run(debug=True, port=port)
+        app.run(host="0.0.0.0",port=port)
 
