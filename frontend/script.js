@@ -115,25 +115,46 @@ function updateProfileUI() {
 // ==========================================
 // 3. AI ANALYSIS
 // ==========================================
-function runAIAnalysisManual(type = "cosmetic") {
-    const input = document.getElementById(type)?.value;
-    const resultDiv = document.getElementById("aiResult");
+async function runAIAnalysis() {
+    const aiResultDiv = document.getElementById("aiResult");
     const savedProfile = localStorage.getItem("profile");
+    
+    // 1. Check if profile exists
+    if (!savedProfile) {
+        alert("Please complete your Personal Profile first!");
+        return;
+    }
 
-    if (!input) { alert("Enter ingredients first!"); return; }
-    if (!savedProfile) { alert("Save profile first!"); return; }
-
+    // 2. Gather data from the page
     const profile = JSON.parse(savedProfile);
-    const payload = { profile, ingredients: input.split(","), type };
+    const medicineInput = document.getElementById("medicine")?.value || "";
+    const cosmeticInput = document.getElementById("ingredients")?.innerText || ""; // From Tesseract
+    
+    aiResultDiv.innerHTML = "⏳ AI is thinking... please wait.";
 
-    fetch("http://localhost:5000/api/full-analysis", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-    })
-    .then(res => res.json())
-    .then(data => { if (resultDiv) resultDiv.innerText = data.summary; })
-    .catch(err => console.error("AI Error:", err));
+    try {
+        const response = await fetch("http://localhost:5000/api/full-analysis", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                profile: profile,
+                cyclePhase: "Not specified", // You can expand this later
+                medicineIngredients: medicineInput.split(","),
+                cosmeticIngredients: cosmeticInput.split(",")
+            })
+        });
+
+        const data = await response.json();
+        
+        // 3. Display the result
+        aiResultDiv.innerHTML = `
+            <div style="background: #fdf2f8; padding: 15px; border-radius: 10px; border-left: 5px solid #ff4da6; margin-top: 10px;">
+                <strong>🤖 AI Analysis:</strong><br>${data.summary}
+            </div>`;
+    } catch (error) {
+        aiResultDiv.innerHTML = "❌ Error connecting to AI server. Make sure app.py is running.";
+        console.error(error);
+    }
 }
 
 // Start Profile logic when page loads
